@@ -5,7 +5,7 @@
       :id="inputName"
       :value="inputValue"
       @input="handleInput($event.target.value)"
-      ref="input"
+      @focus="handleFocus($event)"
     />
   </div>
 </template>
@@ -20,7 +20,13 @@ export default {
   methods: {
     handleInput(value) {
       this.$emit('input', value)
+    },
+    handleFocus() {
+      console.log('handlefocus', this.$el.children[1].focus())
     }
+  },
+  created() {
+    console.log('created', this.inputRef)
   }
 }
 </script>

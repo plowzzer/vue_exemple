@@ -1,5 +1,5 @@
 <template>
-  <button class="button" :class="type" @click="handleClick()">
+  <button class="btn" :class="type" @click="handleClick()">
     <slot />
   </button>
 </template>
@@ -18,9 +18,9 @@ export default {
 </script>
 
 <style lang="scss">
-.button {
+.btn {
   background: #2c3e50;
-  border: 0;
+  border: none;
   padding: 6px 12px;
   margin: 5px 0;
   font-size: 14px;
@@ -28,8 +28,15 @@ export default {
   border-radius: 4px;
   text-transform: uppercase;
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  transition: 0.4s all;
+  &:hover {
+    background: #1b2d3f;
+  }
+  &.btn-success {
+    background: #42b983;
+    &:hover {
+      background: #31a872;
+    }
+  }
 }
 </style>
