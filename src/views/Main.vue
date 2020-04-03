@@ -1,21 +1,28 @@
 <template>
   <div class="home">
     <Container>
-      <MyInput
-        inputName="inputRepository"
-        label="Adicione o nome do repositório aqui:"
-        ref="repoInput"
-        v-model="inputValue"
-      />
-      <p v-if="errorMessage">{{ errorMessage }}</p>
-      <MyButton @btnClick="handleSubmit()" type="btn-success">Botão</MyButton>
-      <MyButton @btnClick="handleFocus()">Focus</MyButton>
+      <div class="form">
+        <div class="inputRepository">
+          <MyInput
+            inputName="inputRepository"
+            label="Adicione o nome do repositório aqui:"
+            ref="repoInput"
+            v-model="inputValue"
+          />
+          <p v-if="errorMessage">{{ errorMessage }}</p>
+        </div>
+        <MyButton @btnClick="handleSubmit()" type="btn-success">
+          +
+        </MyButton>
+      </div>
 
       <hr />
 
-      <ul>
+      <ul class="repository-list">
         <li v-for="repository of repositories" :key="repository">
-          {{ repository }}
+          <router-link :to="{ path: `/repository/${repository}` }">{{
+            repository
+          }}</router-link>
         </li>
       </ul>
     </Container>
@@ -51,6 +58,7 @@ export default {
     }
   },
   mounted() {
+    // Handle focus on input after this component is mounted
     this.handleFocus()
   },
   methods: {
@@ -81,3 +89,31 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.form {
+  display: flex;
+  align-items: center;
+  .inputRepository {
+    flex: 1;
+    margin-right: 15px;
+  }
+  button {
+    height: 44px;
+  }
+}
+ul.repository-list {
+  li {
+    padding: 20px 5px;
+    border-bottom: 1px solid #eee;
+    &:last-child {
+      border-bottom: none;
+    }
+    a {
+      color: #42b983;
+      font-size: 16px;
+      padding: 5px;
+    }
+  }
+}
+</style>
