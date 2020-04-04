@@ -8,6 +8,7 @@
             label="Adicione o nome do repositório aqui:"
             ref="repoInput"
             v-model="inputValue"
+            @keyup.enter.native="handleSubmit"
           />
           <p v-if="errorMessage">{{ errorMessage }}</p>
         </div>
@@ -20,9 +21,10 @@
 
       <ul class="repository-list">
         <li v-for="repository of repositories" :key="repository">
-          <router-link :to="{ path: `/repository/${repository}` }">{{
-            repository
-          }}</router-link>
+          <router-link
+            :to="{ path: `/repository/${encodeURIComponent(repository)}` }"
+            >{{ repository }}</router-link
+          >
         </li>
       </ul>
     </Container>
@@ -76,7 +78,9 @@ export default {
             'repositories',
             JSON.stringify(this.repositories)
           )
+          this.handleClean()
           this.inputValue = ''
+          this.errorMessage = ''
         }
       } catch (error) {
         console.error(error)

@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Main</router-link> |
-      <router-link to="/repository/:repository_name">Repository</router-link>
+      <router-link to="/repository">Repository</router-link>
     </div>
     <router-view />
   </div>

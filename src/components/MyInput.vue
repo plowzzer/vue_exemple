@@ -22,11 +22,11 @@ export default {
       this.$emit('input', value)
     },
     handleFocus() {
-      console.log('handlefocus', this.$el.children[1].focus())
+      this.$el.children[1].focus()
+    },
+    handleClean() {
+      this.$emit('input', '')
     }
-  },
-  created() {
-    console.log('created', this.inputRef)
   }
 }
 </script>
